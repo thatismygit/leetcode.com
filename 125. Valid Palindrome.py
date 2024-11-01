@@ -35,3 +35,24 @@ class Solution:
             else:
                 left+=1
         return True
+
+# another solution
+
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l,r=0,len(s)-1
+        while l<r:
+            cond1 = s[l].isalnum()
+            cond2 = s[r].isalnum()
+            cond3 = s[l].lower()!=s[r].lower()
+            if cond1 and cond2 and cond3:
+                return False
+            elif cond1 and not cond2:
+                r-=1
+                continue
+            elif not cond1 and cond2:
+                l+=1
+                continue
+            l+=1
+            r-=1
+        return True
