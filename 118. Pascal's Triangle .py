@@ -1,3 +1,4 @@
+# 0ms
 class Solution:
     def generate(self, numRows: int) -> List[List[int]]:
         if numRows==1: return [[1]]
