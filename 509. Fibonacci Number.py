@@ -1,36 +1,48 @@
-# 23 ms
+# via Recursion 242 ms
+
 # class Solution:
 #     def fib(self, n: int) -> int:
-#         def fibo_memo(n, memo={}):
-#             if n <= 1:
-#                 return n
+#         def fun(n):
+#             if n==1 or n==2:
+#                 return 1
+#             return fun(n-1)+fun(n-2)
+#         if n:
+#             return fun(n)
+#         return 0
+
+
+
+
+# via Memoization 41 ms
+
+# class Solution:
+#     def fib(self, n: int) -> int:
+#         def fun(n,memo={}):
+#             if n==1 or n==2:
+#                 return 1
 #             if n not in memo:
-#                 memo[n] = fibo_memo(n - 1) + fibo_memo(n - 2)
+#                 memo[n]=fun(n-1)+fun(n-2)
 #             return memo[n]
+#         if n:
+#             return fun(n)
+#         return 0
 
-#         return fibo_memo(n)
 
-# 42 ms
-# class Solution:
-#     def fib(self, n: int) -> int:
-#         def fibo_tabu(num):
-#             if num<=1:
-#                 return num
-#             tabu=[0]*(num+1)
-#             tabu[1]=1
-#             for i in range(2,num+1):
-#                 tabu[i]=tabu[i-1]+tabu[i-2]
-#             return tabu[i]
-#         return fibo_tabu(n)
 
-# 34 ms
+
+# via Tabualization 27ms
+
+
 class Solution:
     def fib(self, n: int) -> int:
-        def fib_tabu(num):
-            if num<=1:
-                return num
-            prev,prev2=0,1
-            for i in range(2,num+2):
-                prev2,prev=prev,(prev+prev2)
-            return prev
-        return fib_tabu(n)
+        def fun(n):
+            if n == 1 or n == 2:
+                return 1
+            prev1, prev2 = 0, 1
+            for i in range(n - 1):
+                prev1, prev2 = prev2, (prev1 + prev2)
+            return prev2
+
+        if n:
+            return fun(n)
+        return 0
