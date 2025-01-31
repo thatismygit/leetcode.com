@@ -17,3 +17,27 @@ class Solution:
             return True
         else:
             return False
+
+# 3ms
+class Solution:
+    def isValid(self, s: str) -> bool:
+        bucket = ""
+        for i in range(len(s)):
+            if s[i] in "([{":
+                bucket += s[i]
+                continue
+            if not bucket:
+                return False
+            if s[i] == ")" and bucket[-1] == "(":
+                bucket = bucket[:-1]
+                continue
+            if s[i] == "]" and bucket[-1] == "[":
+                bucket = bucket[:-1]
+                continue
+            if s[i] == "}" and bucket[-1] == "{":
+                bucket = bucket[:-1]
+                continue
+            return False
+        if not bucket:
+            return True
+        return False
